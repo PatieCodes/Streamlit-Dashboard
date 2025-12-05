@@ -22,6 +22,7 @@ project/
 │── requirements.txt # List of dependencies
 │── README.md        # Documentation
 │── data/            # Sample data files
+│── Modules/         # Python scripts
 ```
 
 ---
