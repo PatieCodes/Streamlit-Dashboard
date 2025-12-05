@@ -1,4 +1,7 @@
 import streamlit as st
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
 
 # -------------------------
 # PAGE CONFIG
@@ -32,6 +35,30 @@ with col3:
     st.image("Data files/rice-logo.jpg", use_container_width=True)  # Replace with your logo filename
 
 st.markdown("---")  # Divider line
+
+# -------------------------
+# LOAD DATA FUNCTION
+# -------------------------
+
+data_url = 'https://docs.google.com/spreadsheets/d/1fTpJACr1Ay6DEIgFxjFZF8LgEPiwwAFY/edit?usp=sharing&ouid=103457517634340619188&rtpof=true&sd=true'
+
+def load_file(data_url):
+    # Modify URL to allow pandas to read the Excel export
+    modified_url = data_url.replace('/edit?usp=sharing', '/export?format=xlsx')
+
+    # Load ALL sheets into a dictionary
+    all_sheets = pd.read_excel(modified_url, sheet_name=None)
+
+    data = {}
+    for sheet_name, df in all_sheets.items():
+        data[sheet_name] = df
+
+    return data
+
+# Load the dataset
+data = load_file(data_url)
+
+st.write(data)
 
 # -------------------------
 # TABS
