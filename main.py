@@ -59,6 +59,13 @@ def load_file(data_url):
 data = load_file(data_url)
 
 # -------------------------
+# Helper function for table display
+# -------------------------
+def load_data(data):
+    # Show the Switchbacks dataframe
+    st.dataframe(data['Switchbacks'])
+
+# -------------------------
 # TABS
 # -------------------------
 
@@ -119,3 +126,36 @@ with tab2:
 # -------------------------
 with tab3:
     st.header("Visualizations")
+
+    # Create 3 columns
+    col_left, col_middle, col_right = st.columns([2, 2, 2])
+
+    # LEFT COLUMN: Data + Slider filter
+    with col_left:
+        st.subheader("Switchbacks Table")
+
+        df = data['Switchbacks']
+
+        # Slider to filter rows by index
+        min_row, max_row = st.slider(
+            "Select row range:",
+            min_value=0,
+            max_value=len(df) - 1,
+            value=(0, len(df) - 1)
+        )
+
+        # Filter dataframe
+        filtered_df = df.iloc[min_row:max_row + 1]
+
+        # Display filtered dataframe
+        st.dataframe(filtered_df)
+
+    # MIDDLE COLUMN (empty for now)
+    with col_middle:
+        st.subheader("Plot Area 1")
+        st.write("Add charts here later.")
+
+    # RIGHT COLUMN (empty for now)
+    with col_right:
+        st.subheader("Plot Area 2")
+        st.write("Add charts here later.")
