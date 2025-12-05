@@ -58,8 +58,6 @@ def load_file(data_url):
 # Load the dataset
 data = load_file(data_url)
 
-st.write(data)
-
 # -------------------------
 # TABS
 # -------------------------
@@ -71,15 +69,34 @@ tab1, tab2, tab3 = st.tabs(["📄 Metadata", "📘 Data Dictionary", "📊 Visua
 # -------------------------
 with tab1:
     st.header("Metadata")
+
     st.write("""
     This dashboard is built to analyze the **HBR - UBER Case Study** dataset.
-    
-    **Includes:**
-    - Dataset description  
-    - Source information  
-    - Purpose of analysis  
-    - Notes on data quality  
+
+    Below is automatically generated metadata based on the Google Sheets workbook.
     """)
+
+    st.markdown("### 📁 Dataset Structure")
+
+    # Show available sheets
+    st.write("**Sheets Loaded:**")
+    st.write(list(data.keys()))
+
+    st.markdown("---")
+
+    st.markdown("### 📊 Sheet Details")
+
+    # Loop through each sheet and show metadata
+    for sheet_name, df in data.items():
+        with st.expander(f"📌 {sheet_name}"):
+            st.write(f"**Rows:** {df.shape[0]}")
+            st.write(f"**Columns:** {df.shape[1]}")
+            st.write("**Column Names:**")
+            st.write(list(df.columns))
+
+            # Optional: preview first lines
+            st.write("**Preview:**")
+            st.dataframe(df.head())
 
 # -------------------------
 # TAB 2: DATA DICTIONARY
