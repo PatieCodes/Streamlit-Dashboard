@@ -16,7 +16,7 @@ st.set_page_config(
 col1, col2, col3 = st.columns([1, 4, 1])
 
 with col1:
-    st.image("left_logo.png", use_container_width=True)  # Replace with your logo filename
+    st.image("Data files/Uber-logo.png", use_container_width=True)  # Replace with your logo filename
 
 with col2:
     st.markdown(
@@ -29,7 +29,7 @@ with col2:
     )
 
 with col3:
-    st.image("right_logo.png", use_container_width=True)  # Replace with your logo filename
+    st.image("Data files/Rice-logo.jpg", use_container_width=True)  # Replace with your logo filename
 
 st.markdown("---")  # Divider line
 
