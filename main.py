@@ -29,7 +29,7 @@ with col2:
     )
 
 with col3:
-    st.image("Data files/Rice-logo.jpg", use_container_width=True)  # Replace with your logo filename
+    st.image("Data files/rice-logo.jpg", use_container_width=True)  # Replace with your logo filename
 
 st.markdown("---")  # Divider line
 
